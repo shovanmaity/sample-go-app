@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	harnesschaossdk "github.com/shovanmaity/fault-flag-go/lib"
+	harnesschaossdk "github.com/harness/fault-flag-go"
 	_ "github.com/shovanmaity/sample-go-app/tools"
 )
 

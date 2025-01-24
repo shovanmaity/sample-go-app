@@ -3,7 +3,7 @@ package tools
 import (
 	"os"
 
-	harnesschaossdk "github.com/shovanmaity/fault-flag-go/lib"
+	harnesschaossdk "github.com/harness/fault-flag-go"
 )
 
 func init() {
