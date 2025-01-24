@@ -6,6 +6,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	harnesschaossdk "github.com/shovanmaity/fault-flag-go/lib"
+	_ "github.com/shovanmaity/sample-go-app/tools"
 )
 
 func main() {
@@ -39,14 +41,23 @@ func main() {
 }
 
 func greetUser(name string) (string, error) {
+	if err := harnesschaossdk.Run(); err != nil {
+		return "", err
+	}
 	return fmt.Sprintf("Hello, %s", name), nil
 }
 
 func getCurrentTime() (string, error) {
+	if err := harnesschaossdk.Run(); err != nil {
+		return "", err
+	}
 	now := time.Now()
 	return "The time is " + now.Format(time.UnixDate), nil
 }
 
 func healthStatus() (string, error) {
+	if err := harnesschaossdk.Run(); err != nil {
+		return "", err
+	}
 	return "ok", nil
 }
