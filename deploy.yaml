@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-sample-app
+spec:
+  selector:
+    matchLabels:
+      app: go-sample-app
+  template:
+    metadata:
+      labels:
+        app: go-sample-app
+    spec:
+      containers:
+      - name: go-sample-app
+        imagePullPolicy: Always
+        image: docker.io/shovan1995/go-sample-app:v5
+        env:
+        - name: EMISSARY_URL
+          value: http://chaos-emissary.hce:8000
+        - name: APPLICATION_NAME
+          value: go-sample-app-dev
+        resources:
+          limits:
+            memory: 128Mi
+            cpu: 500m
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  go-sample-app
+spec:
+  selector:
+    app:  go-sample-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
